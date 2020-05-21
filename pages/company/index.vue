@@ -63,6 +63,7 @@
                 light
                 :items="branch"
                 item-text="branches_name"
+                v-model="branches_name"
                 chips
                 small-chips
                 hide-details
@@ -75,7 +76,7 @@
               <v-card 
                 class="branch" 
                 elevation="4"
-                v-for="(item, index) in branch" 
+                v-for="(item, index) in handleSearch" 
                 :key="index"
               >
                 <v-row>
@@ -266,6 +267,13 @@ export default {
     }
   },
   asyncData: getBoth,
+  computed: {
+    handleSearch() {
+      return this.branch.filter(post => {
+        return post.branches_name.toLowerCase().includes(this.branches_name.toLowerCase())
+      })
+    }
+  },
   methods: {
     handleEdit(index) {
       const data = this.branch[index];
