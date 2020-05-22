@@ -69,7 +69,7 @@ export default {
 }
 .company, 
 .branch {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3)!important;
   border-radius: 6px;
   padding: 0 16px;
   margin: 1rem;

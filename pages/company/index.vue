@@ -125,13 +125,13 @@ export default {
     background-image: linear-gradient(to right top, #1f4287, #1a3879, #142d6c, #0e245f, #071a52)!important;
   }
   .branch {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3)!important;
     border-radius: 6px;
     padding: 0 16px;
     margin: 1rem;
   }
   .branch:hover {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.4)!important;
     box-shadow:  2px 2px 3px 4px rgba(0, 0, 0, 0.5)!important;
   }
   .logo {
