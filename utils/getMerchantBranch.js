@@ -19,7 +19,7 @@ export const getBoth = async function({req, redirect, $axios}) {
   };
   try {
     let merchant = await $axios.get('/get-all-merchants', config)
-    let branch = await $axios.get('/get-all-branches', config)
+    let branch = await $axios.get('/branches-created-by', config)
     let portfolio = await $axios.get('/portforlio', config)
     return {
       merchant: merchant.data,

@@ -50,7 +50,7 @@
 <script>
 import { report } from '~/utils/getReport.js';
 export default {
-  // asyncData: report
+  asyncData: report
 }
 </script>
 

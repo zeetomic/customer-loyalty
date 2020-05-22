@@ -1,5 +1,5 @@
 {
-  "name": "partner-dashboard",
+  "name": "zeetomic-loyalty-program",
   "version": "1.0.0",
   "description": "Zeetomic Business",
   "author": "Piset Heang",
@@ -17,7 +17,6 @@
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0",
-    "nuxt-purgecss": "^1.0.0"
+    "@nuxtjs/vuetify": "^1.0.0"
   }
 }

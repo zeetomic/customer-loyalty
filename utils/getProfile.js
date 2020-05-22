@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-export const profile = function asyncData({req, redirect, $axios}) {
+export const profile = function({req, redirect, $axios}) {
   let token;
   if (process.server) {
     const jwtCookie = req.headers.cookie

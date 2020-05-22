@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-export const profile = function asyncData({req, redirect, $axios}) {
+export const report = function({req, redirect, $axios}) {
   let token;
   if (process.server) {
     const jwtCookie = req.headers.cookie
@@ -17,7 +17,7 @@ export const profile = function asyncData({req, redirect, $axios}) {
       Authorization: "Bearer " + token
     }
   };
-  return $axios.get("/", config)
+  return $axios.get("/get-transactions-report", config)
     .then((res) => {
       return {
         report: res.data,

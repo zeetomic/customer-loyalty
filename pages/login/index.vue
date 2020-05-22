@@ -57,6 +57,10 @@ export default {
       .then(_=> {
         this.loading = false;
       })
+      .catch(_=> {
+        this.loading = false;
+        this.$toast.error('Something Went Wrong On Our End!!');
+      })
     }
   }
 }
