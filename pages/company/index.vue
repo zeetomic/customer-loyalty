@@ -12,19 +12,16 @@
           <p class="font-weight-medium display-1">{{item.merchant_name}}</p>
           <v-row>
             <v-col>
-              <v-card
-                class="company py-4" 
-              >
+              <v-card class="company py-4">
                 <span class="headline">Balance</span>
-                <v-row 
+                <div
                   v-for="(item, i) in portfolio"
                   :key="i"
                   class="px-6 py-2"
                 >
-                  <!-- <v-icon color="#f4fa9c">fas fa-dollar-sign</v-icon> -->
                   <span class="title ml-2">{{item.asset_code ? item.asset_code : 'Native'}}: </span>
                   <span  class="title ml-2" style="color: #30e3ca">{{item.balance}}</span>
-                </v-row>
+                </div>
               </v-card>
             </v-col>
             <v-col>
@@ -56,19 +53,13 @@
               <p class="font-weight-medium display-1">Branch</p>
             </v-col>
             <v-col>
-              <v-autocomplete
+              <v-text-field
                 label="Search"
+                v-model="search"
                 rounded
                 solo
                 light
-                :items="branch"
-                item-text="branches_name"
-                v-model="branches_name"
-                chips
-                small-chips
-                hide-details
-                hide-no-data
-              ></v-autocomplete>
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -263,14 +254,15 @@ export default {
       logo_uri: '',
       is_active: true,
 
-      email: ''
+      email: '',
+      search: ''
     }
   },
   asyncData: getBoth,
   computed: {
     handleSearch() {
       return this.branch.filter(post => {
-        return post.branches_name.toLowerCase().includes(this.branches_name.toLowerCase())
+        return post.branches_name.toLowerCase().includes(this.search.toLowerCase())
       })
     }
   },
