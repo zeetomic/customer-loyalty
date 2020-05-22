@@ -34,7 +34,6 @@ export default {
   */
   buildModules: [
     '@nuxtjs/vuetify',
-    'nuxt-purgecss',
   ],
   /*
   ** Nuxt.js modules
