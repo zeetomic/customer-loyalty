@@ -106,7 +106,7 @@ export default {
   },
   data() {
     return {
-      search: ''
+      search: '',
     }
   },
   asyncData: getBoth,

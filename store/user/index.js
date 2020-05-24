@@ -63,11 +63,7 @@ export const actions = {
   },
 // Update
   async handleUpdate({commit}, data) {
-    const config = {
-      headers: {
-        "Authorization": "Bearer " + Cookie.get('token'),
-      }
-    };
+    await this.$axios.setToken(Cookie.get('token'), 'Bearer')
     await this.$axios.post('/update-branches', {
       branches_name: data.branches_name,
       address: data.address,
@@ -77,7 +73,7 @@ export const actions = {
       approval_code: data.approval_code,
       logo_uri: data.logo_uri,
       is_active: data.is_active,
-    }, config)
+    })
     .then(res => {
       if(res.data) {
         commit('SET_MSG', res.data.message);
