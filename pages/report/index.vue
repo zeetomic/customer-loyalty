@@ -21,7 +21,7 @@
         </thead>
       </template>
       <template v-slot:body>
-        <tbody v-for="(item, i) in report" :key="i">
+        <tbody v-for="(item, i) in my_report" :key="i">
           <tr>
             <td class="d-flex align-center">
               <span>{{ item.location }}</span>
@@ -36,10 +36,10 @@
               <span>{{ item.amount }}</span>
             </td>
             <td>
-              <span>{{ Math.floor(item.rewards*100)/100 }}</span>
+              <span>{{ item.rewards }}</span>
             </td>
             <td>
-              <span>{{ Timecon(item.created_at) }}</span>
+              <span>{{ item.created_at }}</span>
             </td>
           </tr>
         </tbody>
@@ -113,7 +113,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .custom-table,
 .v-data-table__wrapper {
   border-radius: 20px!important;
@@ -121,6 +121,7 @@ export default {
 }
 thead th{
   background: #142d6c!important;
+  border-radius: 20px!important;
 }
 tbody tr:hover {
   background: rgba(0, 0, 0, 0.3)!important;
