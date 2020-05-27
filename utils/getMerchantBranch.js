@@ -1,7 +1,7 @@
 import Cookie from 'js-cookie';
 
 export const getBoth = async function({req, redirect, $axios}) {
-  let token;
+  let token = '';
   if (process.server) {
     const Cookie = req.headers.cookie
       .split(";")

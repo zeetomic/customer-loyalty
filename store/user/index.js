@@ -3,7 +3,8 @@ import Cookie from 'js-cookie';
 export const state = () => ({
   token: '',
   msg: '',
-  type: ''
+  type: '',
+  user: []
 })
 
 export const mutations = {
@@ -15,6 +16,9 @@ export const mutations = {
   },
   SET_TYPE(state, payload) {
     state.type = payload;
+  },
+  SET_USER(state, payload) {
+    state.user = payload;
   }
 }
 

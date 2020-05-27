@@ -8,7 +8,12 @@
     >
       <v-row class="d-flex align-center pl-2">
         <v-img :src="profile_img" max-width="40px"></v-img>
-        <!-- <span class="pl-4 white--text subtitle-1">{{ user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name }}</span> -->
+        <span
+          class="pl-4 white--text title font-weight-medium"
+          v-if="user_profile.first_name && user_profile.last_name"
+        >
+          {{ user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name }}
+        </span>
       </v-row>
       <v-spacer></v-spacer>
       <v-btn 
@@ -62,6 +67,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 
 export default {
   data() {
@@ -84,7 +90,10 @@ export default {
         this.$router.push('/login');
       })
     }
-  }
+  },
+  computed: mapState({
+    user_profile: state => state.user.user
+  })
 }
 </script>
 
