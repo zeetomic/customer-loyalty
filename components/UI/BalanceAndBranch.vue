@@ -65,7 +65,7 @@ export default {
 <style scoped>
 .card,
 .branch-card {
-  background: #1F4287;
+  background: #1F4287!important;
 }
 .company, 
 .branch {
