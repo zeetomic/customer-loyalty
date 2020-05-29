@@ -31,11 +31,11 @@
             </v-col>
           </v-row>
           <div>
-            <v-card 
+            <div
               class="branch" 
-              elevation="4"
               v-for="(item, index) in handleSearch" 
               :key="item.branches_name"
+              light
             >
               <v-row>
                 <v-col cols="1">
@@ -73,7 +73,8 @@
                   </v-menu>
                 </v-col>
               </v-row>
-            </v-card>
+              <v-divider></v-divider>
+            </div>
           </div>
           <div>
             <AddBranch 
@@ -97,6 +98,7 @@ import AddBranch from '~/components/Dialog/AddBranch.vue';
 import { getBoth } from '~/utils/getMerchantBranch.js';
 
 export default {
+  layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
   components: {
     AddBranch,
     BalanceAndBranch,
@@ -122,17 +124,19 @@ export default {
 
 <style scoped>
   .branch-card {
-    background-image: linear-gradient(to right top, #1f4287, #1a3879, #142d6c, #0e245f, #071a52)!important;
+    /* background-image: linear-gradient(to right top, #1f4287, #1a3879, #142d6c, #0e245f, #071a52)!important; */
+    background: #1f4287
   }
   .branch {
-    background: rgba(0, 0, 0, 0.3)!important;
+    /* background: rgba(0, 0, 0, 0.2)!important; */
+    background: transparent;
     border-radius: 6px;
     padding: 0 16px;
     margin: 1rem;
   }
   .branch:hover {
-    background: rgba(0, 0, 0, 0.4)!important;
-    box-shadow:  2px 2px 3px 4px rgba(0, 0, 0, 0.5)!important;
+    background: rgba(0, 0, 0, 0.1)!important;
+    /* box-shadow:  2px 2px 3px 4px rgba(0, 0, 0, 0.36)!important; */
   }
   .logo {
     max-width: 60px;

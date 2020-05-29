@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-export const report = function({req, redirect, $axios}) {
+export const report = async function({req, redirect, $axios}) {
   let token;
   if (process.server) {
     const jwtCookie = req.headers.cookie
@@ -17,13 +17,15 @@ export const report = function({req, redirect, $axios}) {
       Authorization: "Bearer " + token
     }
   };
-  return $axios.get("/get-transactions-report", config)
-    .then((res) => {
-      return {
-        report: res.data,
-      }
-    })
-    .catch((e) => {
-      redirect('/login');
-    })
+  try {
+   let report = await $axios.get("/get-transactions-report", config)
+   let branch = await $axios.get("/branches-created-by", config)
+    return {
+      report: report.data,
+      branch: branch.data
+    }
+  } catch {
+    redirect('/login');
+  }
+  
 }

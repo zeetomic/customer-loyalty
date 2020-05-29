@@ -36,8 +36,11 @@
 </template>
 
 <script>
+import { message } from '~/utils/mixins/message.js';
+
 export default {
-  layout: 'login',
+  layout: ({ isMobile }) => isMobile ? 'mobile' : 'login',
+  mixins: [ message ],
   data() {
     return {
       zee_business: require('~/assets/zee-business.png'),
@@ -56,6 +59,9 @@ export default {
       })
       .then(_=> {
         this.loading = false;
+        if(this.type !== 'success') {
+          this.$toast.error(this.msg)
+        }
       })
       .catch(_=> {
         this.loading = false;

@@ -35,7 +35,8 @@
 
 <script>
 export default {
-  layout: 'login'
+  layout: ({ isMobile }) => isMobile ? 'mobile' : 'login',
+
 }
 </script>
 

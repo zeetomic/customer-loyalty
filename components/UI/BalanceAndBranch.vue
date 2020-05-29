@@ -20,7 +20,7 @@
               :key="i"
               class="px-6 py-2"
             >
-              <span class="title ml-2">{{item.asset_code ? item.asset_code : 'Native'}}: </span>
+              <v-icon>fas fa-wallet</v-icon><span class="title ml-2" v-if="item.balance">{{item.asset_code ? item.asset_code : 'Native'}}: </span>
               <span  class="title ml-2" style="color: #30e3ca">{{item.balance}}</span>
             </div>
           </v-card>
@@ -32,7 +32,7 @@
           >
             <span class="headline">Branch</span>
             <div class="pa-6">
-              <v-icon small>fas fa-store</v-icon>
+              <v-icon>fas fa-store</v-icon>
               <span class="title ml-2">Branch:</span>
               <span class="title ml-2" style="color: #30e3ca">{{ branch.length }}</span>
             </div>
@@ -65,13 +65,14 @@ export default {
 <style scoped>
 .card,
 .branch-card {
-  background-image: linear-gradient(to right top, #1f4287, #1a3879, #142d6c, #0e245f, #071a52)!important;
+  background: #1F4287;
 }
 .company, 
 .branch {
-  background: rgba(0, 0, 0, 0.3)!important;
+  background: rgba(200, 200, 200, 0.1)!important;
   border-radius: 6px;
   padding: 0 16px;
   margin: 1rem;
+  text-align: center;
 }
 </style>

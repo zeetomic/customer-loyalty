@@ -16,6 +16,7 @@
               v-model="date_from"
               label="From"
               readonly
+              clearable
               v-on="on"
             ></v-text-field>
           </template>
@@ -41,6 +42,7 @@
               v-model="date_to"
               label="To"
               readonly
+              clearable
               v-on="on"
             ></v-text-field>
           </template>
@@ -51,9 +53,19 @@
           </v-date-picker>
         </v-menu>
       </v-col>
+      <v-col>
+        <v-select
+          hide-details
+          clearable
+          label="Location"
+          :items="branch.map(b => b.branches_name)"
+          v-model="location"
+          class="pt-3"
+        ></v-select>
+      </v-col>
       <v-col class="d-flex align-center">
-        <v-btn class="primary" width="50%" large @click="handleSearch">
-          Search <v-icon small>fas fa-search</v-icon>
+        <v-btn class="primary" width="60%" large :loading="loading" @click="handleSearch">
+          <v-icon small>fas fa-search</v-icon>Search
         </v-btn>
       </v-col>
       <v-col>
@@ -65,8 +77,8 @@
             name  = "report.csv"
             class="btn-download"
           >
-            Export As CSV 
             <v-icon dark small>fas fa-download</v-icon>
+            Export As CSV 
           </download-csv>
         </client-only>
       </v-col>
@@ -89,7 +101,7 @@
           </tr>
         </thead>
       </template>
-      <template v-slot:body>
+      <template v-slot:body v-if="report.length >= 0">
         <tbody v-for="(item, i) in my_report" :key="i">
           <tr>
             <td class="d-flex align-center">
@@ -113,7 +125,7 @@
           </tr>
         </tbody>
       </template>
-      <template v-slot:no-data>
+      <template v-if="report.length = 0" v-slot:no-data>
         <span>No data available</span>
       </template>
     </v-data-table>
@@ -122,10 +134,14 @@
 
 <script>
 import { report } from '~/utils/getReport.js';
+import Cookie from 'js-cookie';
+
 export default {
+  layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
   asyncData: report,
   computed: {
     my_report() {
+      console.log(this.report)
       return this.report.map(x => ({
         location: x.location,
         email: x.email,
@@ -138,9 +154,10 @@ export default {
   },
   data() {
     return {
-      date_from: new Date().toISOString().substr(0, 10),
-      date_to: new Date().toISOString().substr(0, 10),
+      date_from: '',
+      date_to: '',
       filterDate: [],
+      location: '',
       labels: {
         location: 'Branches Name',
         email: 'Email',
@@ -156,7 +173,11 @@ export default {
         'amount',
         'rewards',
         'created_at'
-      ]
+      ],
+
+      menu: false,
+      menu1: false,
+      loading: false
     }
   },
   methods: {
@@ -167,16 +188,48 @@ export default {
       const h = d.getHours();
       const m = d.getMinutes();
       return (`${h}:${m}, ${mo} ${da} ${ye}`);
+    },
+    handleSearch() {
+      if(this.date_from && this.date_to && !this.location) {
+        this.loading = true;
+        this.$axios.setToken(Cookie.get('token'), 'Bearer');
+        this.$axios.post('/reports-from-to-date', {
+          from_date: this.date_from,
+          to_date: this.date_to
+        })
+        .then(res => {
+          this.report = res.data;
+          this.loading = false;
+        })
+      } else if(!this.date_from && !this.date_to && this.location){
+        this.loading = true;
+        this.$axios.setToken(Cookie.get('token'), 'Bearer');
+        this.$axios.post('/reports-by-location', {
+          location: this.location
+        })
+        .then(res => {
+          this.report = res.data;
+          this.loading = false;
+        })
+      } else if (this.date_from && this.date_to && this.location) {
+        this.loading = true;
+        this.$axios.setToken(Cookie.get('token'), 'Bearer');
+        this.$axios.post('/reports-from-to-date-by-location', {
+          from_date: this.date_from,
+          to_date: this.date_to,
+          location: this.location
+        })
+        .then(res => {
+          this.report = res.data;
+          this.loading = false;
+        })
+      } else return;
     }
-  },
-  handleSearch() {
-
   }
 }
 </script>
 
 <style scoped>
-
 thead th{
   background: #dddddd!important;
 }

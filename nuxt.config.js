@@ -22,7 +22,11 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/transition.css'
   ],
+  router: {
+    middleware: ['mobile']
+  },
   /*
   ** Plugins to load before mounting the App
   */
