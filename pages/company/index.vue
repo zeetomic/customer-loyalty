@@ -125,11 +125,11 @@ export default {
 <style scoped>
   .branch-card {
     /* background-image: linear-gradient(to right top, #1f4287, #1a3879, #142d6c, #0e245f, #071a52)!important; */
-    background: #1f4287
+    background: #1f4287!important;
   }
   .branch {
     /* background: rgba(0, 0, 0, 0.2)!important; */
-    background: transparent;
+    background: transparent!important;
     border-radius: 6px;
     padding: 0 16px;
     margin: 1rem;
