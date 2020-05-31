@@ -31,7 +31,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/exportcsv.js', ssr: false }
+    { src: '~/plugins/exportcsv.js', ssr: false },
+    { src: '~/plugins/chart', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules

@@ -101,7 +101,7 @@
           </tr>
         </thead>
       </template>
-      <template v-slot:body v-if="report.length >= 0">
+      <template v-slot:body v-if="report.length > 0">
         <tbody v-for="(item, i) in my_report" :key="i">
           <tr>
             <td class="d-flex align-center">
@@ -125,7 +125,7 @@
           </tr>
         </tbody>
       </template>
-      <template v-if="report.length = 0" v-slot:no-data>
+      <template v-if="!report.length" v-slot:no-data>
         <span>No data available</span>
       </template>
     </v-data-table>
@@ -141,7 +141,6 @@ export default {
   asyncData: report,
   computed: {
     my_report() {
-      console.log(this.report)
       return this.report.map(x => ({
         location: x.location,
         email: x.email,
