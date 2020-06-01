@@ -2,22 +2,13 @@
   <div>
     <v-app-bar 
       color="#364f6b"
-      dense  
+      dense
       fixed
       app
     >
-      <v-btn text dark icon @click="miniVariant = !miniVariant">
+      <v-btn text dark icon @click="handleNav">
         <v-icon>fas fa-bars</v-icon>
       </v-btn>
-      <!-- <v-row class="d-flex align-center pl-2">
-        <v-img :src="profile_img" max-width="40px"></v-img>
-        <span
-          class="pl-4 white--text title font-weight-medium"
-          v-if="user_profile.first_name && user_profile.last_name"
-        >
-          {{ user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name }}
-        </span>
-      </v-row> -->
       <v-spacer></v-spacer>
       <v-btn 
         text 
@@ -31,7 +22,8 @@
 
     <v-navigation-drawer 
       :mini-variant="miniVariant"
-      color="#0e153a" 
+      v-model="navbar"
+      color="#0e153a"
       dark
       app
     >
@@ -47,14 +39,7 @@
       </v-list-item>
 
       <v-list-item v-if="miniVariant" class="py-1">
-        <!-- <v-list-item-content>
-          <v-list-item-title class="title">
-            Zeetomic
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            /Customer Loyalty
-          </v-list-item-subtitle>
-        </v-list-item-content> -->
+        
       </v-list-item>
 
       <v-divider></v-divider>
@@ -82,7 +67,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -96,23 +81,24 @@ export default {
       ],
       right: null,
       profile_img: require('~/assets/profile.svg'),
-      miniVariant: false
+      miniVariant: false,
+      navbar: true
     }
   },
   methods: {
+    handleNav() {
+      if(screen.width < 1265) {
+        this.navbar = !this.navbar;
+      } else {
+        this.miniVariant = !this.miniVariant;
+      }
+    },
     LogOut() {
       this.$store.dispatch('user/handleLogOut')
       .then(_=> {
         this.$router.push('/login');
       })
     }
-  },
-  computed: mapState({
-    user_profile: state => state.user.user
-  })
+  }
 }
 </script>
-
-<style scoped>
-
-</style>
