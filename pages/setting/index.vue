@@ -2,7 +2,10 @@
   <div>
     <v-row class="d-flex justify-center">
       <v-col cols="6">
-        <v-card class="pa-4">
+        <v-card 
+          class="pa-4" 
+          flat
+        >
           <v-row class="d-flex justify-center">
             <v-img :src="profile" max-width="80px" class="logo"></v-img>
           </v-row>

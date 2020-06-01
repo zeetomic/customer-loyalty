@@ -113,7 +113,7 @@ export default {
       this.$store.dispatch('user/handleUpdate', {
         branches_name: this.branches_name,
         address: this.address,
-        reward_rates: this.reward_rates,
+        reward_rates: this.reward_rates.toString(),
         asset_code: this.asset_code,
         minimum_spend: this.minimum_spend.toString(),
         approval_code: this.approval_code,

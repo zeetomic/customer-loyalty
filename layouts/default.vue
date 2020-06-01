@@ -1,13 +1,15 @@
 <template>
-  <v-app>
-    <Navbar/>
-    <v-content>
-      <v-container>
-      <div v-if="$nuxt.isOffline">You are offline</div>
-      <nuxt v-if="$nuxt.isOnline"/>
-      </v-container>
-    </v-content>
-  </v-app>
+  <div class="mything">
+    <v-app>
+      <Navbar/>
+      <v-content>
+        <v-container>
+          <div v-if="$nuxt.isOffline">You are offline</div>
+          <nuxt v-if="$nuxt.isOnline"/>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -23,6 +25,10 @@ export default {
 
 <style>
 .v-application {
-  background: #e2f3f5!important;
+  background: #e3e3e3!important;
+}
+.v-content {
+  padding: 20px;
+  border-radius: 16px;
 }
 </style>

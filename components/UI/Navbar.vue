@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar 
-      color="#364f6b"
+      color="#07689f"
       dense
       fixed
       app
@@ -22,10 +22,11 @@
 
     <v-navigation-drawer 
       :mini-variant="miniVariant"
+      mini-variant-width="60"
       v-model="navbar"
-      color="#0e153a"
-      dark
+      color="#fafafa"
       app
+      floating
     >
       <v-list-item v-if="!miniVariant">
         <v-list-item-content>
@@ -53,6 +54,7 @@
           :key="item.title"
           link
           :to="item.path"
+          color="#0077c0"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>

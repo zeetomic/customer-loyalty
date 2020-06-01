@@ -4,17 +4,17 @@
       v-for="(item, i) in merchant.slice(0,1)" 
       :key="i"
       class="pa-6 card" 
-      elevation="10"
-      dark 
+      flat
     >
-      <p class="font-weight-medium display-1">{{item.merchant_name}}</p>
+      <p class="font-weight-medium display-1 text-center" style="color: #0077c0">{{item.merchant_name}}</p>
       <v-row>
         <v-col>
-          <v-card 
-            class="company py-4" 
-            height="100%"
+          <v-card
+            class="company" 
+            flat
           >
-            <span class="headline"><v-icon class="px-2">fas fa-wallet</v-icon>Balance</span>
+            <span class="headline font-weight-bold bg-title">Balance</span>
+            <div class="py-2"></div>
             <v-row>
               <v-col class="d-flex justify-center">
                 <client-only>
@@ -24,8 +24,6 @@
                   ></PieChart>
                 </client-only>
               </v-col>
-            <!-- </v-row>
-            <v-row> -->
               <v-col class="d-flex flex-column align-center justify-center">
                 <div
                   v-for="(item, i) in portfolio"
@@ -34,22 +32,25 @@
                   style="text-align: start"
                 >
                   <span class="subtitle ml-2" v-if="item.balance">{{item.asset_code ? item.asset_code : 'Native'}}: </span>
-                  <span class="title ml-2" style="color: #30e3ca">{{item.balance}}</span>
+                  <span class="title ml-2" style="color: #0077c0">{{item.balance}}</span>
                 </div>
               </v-col>
             </v-row>
           </v-card>
         </v-col>
+        <v-col class="d-flex justify-center" cols="1">
+          <v-divider vertical></v-divider>
+        </v-col>
         <v-col>
-          <v-card 
-            class="company py-4" 
-            height="100%"
+          <v-card
+            class="company"
+            flat
           >
-            <v-icon>fas fa-store</v-icon>
-            <span class="headline">Branch</span>
+            <span class="headline font-weight-bold bg-title">Branch</span>
+            <div class="py-2"></div>
             <div class="pa-6">
-              <span class="title ml-2">Branch:</span>
-              <span class="title ml-2" style="color: #30e3ca">{{ branch.length }}</span>
+              <span class="subtitle ml-2">Branch:</span>
+              <span class="title ml-2" style="color: #0077c0">{{ branch.length }}</span>
             </div>
           </v-card>
         </v-col>
@@ -101,7 +102,7 @@ export default {
         labels: this.portfolio.map(asset => asset.asset_code !== undefined ? asset.asset_code : asset.asset_type),
         datasets: [
           {
-            backgroundColor: ['#92fb85', '#5B9D53', '#6D8E69'],
+            backgroundColor: ['#0077c0', '#007fdb', '#004a7c'],
             data: this.portfolio.map(asset => asset.balance)
           }
         ]
@@ -114,14 +115,19 @@ export default {
 <style scoped>
 .card,
 .branch-card {
-  background: #1F4287!important;
+  background: #fff!important;
 }
 .company, 
 .branch {
-  background: rgba(200, 200, 200, 0.1)!important;
+  /* background: rgba(200, 200, 200, 0.1)!important; */
   border-radius: 6px;
   padding: 0 16px;
   margin: 1rem;
   text-align: center;
+}
+.bg-title {
+  background: rgba(199, 238, 255, 0.6)!important;
+  padding: 6px 120px;
+  border-radius: 6px;
 }
 </style>

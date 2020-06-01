@@ -229,9 +229,6 @@ export default {
 </script>
 
 <style scoped>
-thead th{
-  background: #dddddd!important;
-}
 .btn-download {
   cursor: pointer;
   text-align: center;

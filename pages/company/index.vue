@@ -13,12 +13,11 @@
       <v-col>
         <v-card 
           class="pa-6 branch-card" 
-          elevation="10"
-          dark
+          flat
         >
           <v-row>
             <v-col>
-              <p class="font-weight-medium display-1">Branch</p>
+              <p class="font-weight-medium display-1" style="color: #0077c0">Branch</p>
             </v-col>
             <v-col>
               <v-text-field
@@ -26,7 +25,9 @@
                 v-model="search"
                 rounded
                 solo
-                light
+                background-color="#0077c0"
+                color="#fff"
+                dark
               ></v-text-field>
             </v-col>
           </v-row>
@@ -45,15 +46,15 @@
                   ></v-img>
                 </v-col>
                 <v-col>
-                  <span>Branch Name: {{item.branches_name}}</span>
+                  <span class="body-1">Branch Name: {{item.branches_name}}</span>
                   <br>
-                  <span>Address: {{item.address}}</span>
+                  <span class="body-1">Address: {{item.address}}</span>
                 </v-col>
                 <v-col class="d-flex align-center justify-end">
                   <v-menu offset-y>
                     <template v-slot:activator="{ on }">
                       <v-btn icon v-on="on">
-                        <v-icon>fas fa-ellipsis-h</v-icon>
+                        <v-icon color="#07689f">fas fa-ellipsis-h</v-icon>
                       </v-btn>
                     </template>
                     <v-list>
@@ -73,7 +74,7 @@
                   </v-menu>
                 </v-col>
               </v-row>
-              <v-divider></v-divider>
+              <v-divider inset></v-divider>
             </div>
           </div>
           <div>
@@ -124,19 +125,17 @@ export default {
 
 <style scoped>
   .branch-card {
-    /* background-image: linear-gradient(to right top, #1f4287, #1a3879, #142d6c, #0e245f, #071a52)!important; */
-    background: #1f4287!important;
+    background: #fff!important;
   }
   .branch {
-    /* background: rgba(0, 0, 0, 0.2)!important; */
     background: transparent!important;
     border-radius: 6px;
     padding: 0 16px;
     margin: 1rem;
   }
   .branch:hover {
-    background: rgba(0, 0, 0, 0.1)!important;
-    /* box-shadow:  2px 2px 3px 4px rgba(0, 0, 0, 0.36)!important; */
+    /* background: rgba(0, 0, 0, 0.1)!important; */
+    background: rgba(199, 238, 255, 0.6)!important;
   }
   .logo {
     max-width: 60px;

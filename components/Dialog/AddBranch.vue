@@ -8,7 +8,7 @@
           text 
           v-on="on"
         >
-          <v-icon>fas fa-plus</v-icon>
+          <v-icon color="#0077c0">fas fa-plus</v-icon>
         </v-btn>
       </template>
 
