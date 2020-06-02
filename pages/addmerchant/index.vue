@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col class="d-flex flex-column align-center justify-center">
+    <v-col class="d-flex flex-column align-center justify-center" v-if="!portfolio.error">
       <v-card class="pa-12" min-width="500px">
         <span class="font-weight-medium text-center display-1">
           SignUp To <img src="~/assets/zee-business.png" class="img">
@@ -8,64 +8,67 @@
         <div class="py-4"></div>
         <v-form>
           <v-text-field
-            label="Email"
-            placeholder="Email"
-            v-model="email"
+            label="Merchant Name"
+            placeholder="Merchant Name"
+            v-model="merchant_name"
             solo
           ></v-text-field>
           <v-text-field
-            label="Password"
-            placeholder="Password"
-            v-model="password"
-            type="password"
+            label="Short Name"
+            placeholder="Short Name"
+            v-model="short_name"
             solo
           ></v-text-field>
           <v-btn 
             class="primary" 
             width="100%"
             :loading="loading"
-            @click="handleLogin"
+            @click="handleAddMerchant"
             large
           >
-            Login with Zeetomic Account
+            Add Merchant
           </v-btn>
         </v-form>
+      </v-card>
+    </v-col>
+    <v-col class="d-flex flex-column align-center justify-center" v-if="portfolio.error">
+      <v-card class="pa-12" min-width="500px">
+        <span class="headline red--text">{{portfolio.error.message}}</span>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import { portfolio } from '~/utils/getPortfolio.js';
 import { message } from '~/utils/mixins/message.js';
 export default {
   layout: ({ isMobile }) => isMobile ? 'mobile' : 'login',
+  middleware: ['auth'],
   mixins: [ message ],
+  asyncData: portfolio,
   data() {
     return {
-      email: '',
-      password: '',
+      merchant_name: '',
+      short_name: '',
 
       loading: false
     }
   },
   methods: {
-    handleLogin() {
+    handleAddMerchant() {
       this.loading = true;
-      this.$store.dispatch('user/handleLogin', {
-        email: this.email,
-        password: this.password
+      this.$store.dispatch('user/handleAddMerchant', {
+        merchant_name: this.merchant_name,
+        short_name: this.short_name
       })
       .then(_=> {
-        this.loading = false;
-        if(this.type !== 'success') {
-          this.$toast.error(this.msg)
+        if(this.type === 'success') {
+          this.$toast.success(this.msg);
         } else {
-          this.$router.push('/addmerchant');
+          this.$toast.error(this.msg);
         }
-      })
-      .catch(_=> {
         this.loading = false;
-        this.$toast.error('Something Went Wrong On Our End!!');
       })
     }
   }

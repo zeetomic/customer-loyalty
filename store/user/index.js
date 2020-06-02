@@ -34,7 +34,6 @@ export const actions = {
         commit('SET_TOKEN', res.data.token);
         commit('SET_TYPE', 'success');
         Cookie.set('token', res.data.token);
-        this.$router.push('/');
       } else if(res.data.error){
         commit('SET_MSG', res.data.error.message);
       } else {
@@ -108,6 +107,23 @@ export const actions = {
     await this.$axios.post('/change-password', {
       current_password: data.current_password,
       new_password: data.new_password
+    })
+    .then(async(res) => {
+      if(res.data.message) {
+        await commit('SET_MSG', res.data.message);
+        await commit('SET_TYPE', 'success');
+      } else {
+        await commit('SET_MSG', res.data.error.message);
+        await commit('SET_TYPE', 'error');
+      }
+    })
+  },
+// Add Merchant 
+  async handleAddMerchant({commit}, data) {
+    await this.$axios.setToken(Cookie.get('token'), 'Bearer')
+    await this.$axios.post('/add-merchant', {
+      merchant_name: data.merchant_name,
+      short_name: data.short_name
     })
     .then(async(res) => {
       if(res.data.message) {

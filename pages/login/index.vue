@@ -20,11 +20,19 @@
             v-model="password"
             solo
           ></v-text-field>
+          <v-btn
+            large
+            width="140px"
+            class="success"
+            to="/register"
+          > 
+            Join Program
+          </v-btn>
           <v-btn 
             large 
+            width="260px"
             :loading="loading" 
-            style="width: 100%" 
-            class="primary" 
+            class="primary ml-2" 
             @click="Login()"
           >
             Login
@@ -61,6 +69,8 @@ export default {
         this.loading = false;
         if(this.type !== 'success') {
           this.$toast.error(this.msg)
+        } else {
+          this.$router.push('/');
         }
       })
       .catch(_=> {
