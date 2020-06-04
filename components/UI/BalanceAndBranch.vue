@@ -13,7 +13,7 @@
             class="company" 
             flat
           >
-            <span class="headline font-weight-bold bg-title">Balance</span>
+            <span class="headline font-weight-bold bg-title">Balance <v-icon dark>fas fa-wallet</v-icon></span>
             <div class="py-2"></div>
             <v-row>
               <v-col class="d-flex justify-center">
@@ -46,7 +46,7 @@
             class="company"
             flat
           >
-            <span class="headline font-weight-bold bg-title">Branch</span>
+            <span class="headline font-weight-bold bg-title">Branch <v-icon dark>fas fa-store</v-icon></span>
             <div class="py-2"></div>
             <div class="pa-6">
               <span class="subtitle ml-2">Total Branches:</span>

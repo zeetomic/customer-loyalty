@@ -76,6 +76,7 @@
                     <th class="text-left">Branches Name</th>
                     <th class="text-left">Total Spend</th>
                     <th class="text-left">Total Reward</th>
+                    <th class="text-left">Transaction Date</th>
                   </tr>
                 </thead>
               </template>
@@ -90,6 +91,9 @@
                     </td>
                     <td>
                       <span>{{ Math.floor(item.rewards*100)/100 }}</span>
+                    </td>
+                    <td>
+                      <span>{{ Timecon(item.created_at) }}</span>
                     </td>
                   </tr>
                 </tbody>
@@ -147,7 +151,15 @@ export default {
           }
         ]
       }
-    }
+    },
+    Timecon(time) {
+      const d = new Date(time);
+      const dtf = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' }); 
+      const [{ value: mo },,{ value: da },,{ value: ye }] = dtf.formatToParts(d);
+      const h = d.getHours();
+      const m = d.getMinutes();
+      return (`${h}:${m}, ${mo} ${da} ${ye}`);
+    },
   },
 }
 </script>
