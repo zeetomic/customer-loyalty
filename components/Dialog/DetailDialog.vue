@@ -59,6 +59,7 @@ export default {
       this.minimum_spend = data.minimum_spend;
       this.approval_code = data.approval_code;
       this.logo_uri = data.logo_uri;
+      this.is_active = data.is_active;
     }
   }
 }

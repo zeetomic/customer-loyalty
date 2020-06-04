@@ -14,27 +14,34 @@
 
       <v-card class="px-12 py-6">
         <p class="headline pt-4">Add Branch</p>
-        <v-form>
+        <v-form 
+          ref="form"
+          v-model="valid"
+        >
           <v-select
             outlined
-            label="Merchant ID"
+            label="Merchant"
             :items="merchant"
             item-text="merchant_name"
             item-value="id"
+            :rules="merchant_rule"
             v-model="merchant_id"
           ></v-select>
           <v-text-field
             label="Branch Name"
+            :rules="branchesName_rule"
             v-model="branches_name"
             outlined
           ></v-text-field>
           <v-text-field
             label="Address"
+            :rules="address_rule"
             v-model="address"
             outlined
           ></v-text-field>
           <v-text-field
             label="Reward Rates"
+            :rules="rewardRate_rule"
             v-model="reward_rates"
             outlined
           ></v-text-field>
@@ -45,20 +52,24 @@
               portfolio => portfolio.asset_code !== undefined ? 
               portfolio.asset_code : portfolio.asset_type
             )"
+            :rules="assetCode_rule"
             v-model="asset_code"
           ></v-select>
           <v-text-field
             label="Minimum Spend"
+            :rules="minimumSpend_rule"
             v-model="minimum_spend"
             outlined
           ></v-text-field>
           <v-text-field
             label="Approval Code"
+            :rules="approvalCode_rule"
             v-model="approval_code"
             outlined
           ></v-text-field>
           <v-text-field
             label="Logo URI"
+            :rules="logoUri_rule"
             v-model="logo_uri"
             outlined
           ></v-text-field>
@@ -70,6 +81,7 @@
 </template>
 
 <script>
+import { validateAddBranch } from '~/utils/mixins/validateAddBranch.js';
 import { message } from '~/utils/mixins/message.js';
 
 export default {
@@ -83,7 +95,7 @@ export default {
       Required: true
     }
   },
-  mixins: [message],
+  mixins: [message, validateAddBranch],
   data () {
     return {
       dialog: false,
@@ -100,25 +112,28 @@ export default {
     }
   },
   methods: {
+    
     handleSubmit() {
-      this.loading = true;
-      this.$store.dispatch('user/handleAddBranch', {
-        merchant_id: this.merchant_id,
-        branches_name: this.branches_name,
-        address: this.address,
-        reward_rates: this.reward_rates,
-        asset_code: this.asset_code,
-        minimum_spend: this.minimum_spend,
-        approval_code: this.approval_code,
-        logo_uri: this.logo_uri
-      })
-      .then(_=> {
-        this.loading = false;
-        this.$toast.success(this.msg);
-        setTimeout(() => {
-          location.reload();
-        }, 2000);
-      })
+      if(this.$refs.form.validate()) {
+        this.loading = true;
+        this.$store.dispatch('user/handleAddBranch', {
+          merchant_id: this.merchant_id,
+          branches_name: this.branches_name,
+          address: this.address,
+          reward_rates: this.reward_rates,
+          asset_code: this.asset_code,
+          minimum_spend: this.minimum_spend,
+          approval_code: this.approval_code,
+          logo_uri: this.logo_uri
+        })
+        .then(_=> {
+          this.loading = false;
+          this.$toast.success(this.msg);
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
+        })
+      }
     }
   }
 }

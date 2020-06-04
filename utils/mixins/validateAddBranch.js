@@ -1,7 +1,8 @@
-export const validateUpdate =  {
+export const validateAddBranch =  {
   data() {
     return {
       valid: true,
+
       branchesName_rule: [
         () => !!this.branches_name || 'Branch Name is required'
       ],
@@ -9,7 +10,7 @@ export const validateUpdate =  {
         () => !!this.address || 'Address is required'
       ],
       rewardRate_rule: [
-        () => !!this.reward_rates || 'Reward Rates is required'
+        () => !!this.asset_code || 'Reward Rates is required'
       ],
       assetCode_rule: [
         () => !!this.asset_code || 'Asset Code is required'
@@ -23,8 +24,8 @@ export const validateUpdate =  {
       logoUri_rule: [
         () => !!this.logo_uri || 'Logo URI is required'
       ],
-      isActive_rule: [
-        () => !!this.is_active || 'Status is required'
+      merchant_rule: [
+        () => !!this.merchant_id || 'Merchant is required'
       ],
     }
   }

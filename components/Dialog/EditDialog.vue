@@ -11,20 +11,26 @@
     <v-card class="pa-6 px-12">
       <span class="headline">Update Branch</span>
       <div class="py-4"></div>
-      <v-form>
+      <v-form
+        ref="form1"
+        v-model="valid"
+      >
         <v-text-field
           outlined
           label="Branch Name"
+          :rules="branchesName_rule"
           v-model="branches_name"
         ></v-text-field>
         <v-text-field
           outlined
           label="Address"
+          :rules="address_rule"
           v-model="address"
         ></v-text-field>
         <v-text-field
           outlined
           label="Reward Rates"
+          :rules="rewardRate_rule"
           v-model="reward_rates"
         ></v-text-field>
         <v-select
@@ -34,28 +40,33 @@
             portfolio => portfolio.asset_code !== undefined ? 
             portfolio.asset_code : portfolio.asset_type
           )"
+          :rules="assetCode_rule"
           v-model="asset_code"
         ></v-select>
         <v-text-field
           outlined
           label="Minimun Spend"
+          :rules="minimumSpend_rule"
           v-model="minimum_spend"
         ></v-text-field>
         <v-text-field
           outlined
           label="Approval Code"
+          :rules="approvalCode_rule"
           v-model="approval_code"
         ></v-text-field>
         <v-text-field
           outlined
           label="Logo URI"
+          :rules="logoUri_rule"
           v-model="logo_uri"
         ></v-text-field>
-        <v-text-field
+        <v-select
           outlined
           label="Status is active"
+          :items="status"
           v-model="is_active"
-        ></v-text-field>
+        ></v-select>
         <v-btn 
           class="primary"
           :loading="loading"  
@@ -71,6 +82,7 @@
 </template>
 
 <script>
+import { validateUpdate } from '~/utils/mixins/validateUpdate.js';
 import { message } from '~/utils/mixins/message.js';
 
 export default {
@@ -88,11 +100,12 @@ export default {
       required: true
     }
   },
-  mixins: [message],
+  mixins: [message, validateUpdate],
   data() {
     return {
       loading: false,
       dialog: false,
+      status: [true, false],
 
       branches_name: '',
       address: '',
@@ -117,25 +130,27 @@ export default {
       this.logo_uri = data.logo_uri;
     },
     handleUpdate() {
-      this.loading = true;
-      this.$store.dispatch('user/handleUpdate', {
-        branches_name: this.branches_name,
-        address: this.address,
-        reward_rates: this.reward_rates.toString(),
-        asset_code: this.asset_code,
-        minimum_spend: this.minimum_spend.toString(),
-        approval_code: this.approval_code,
-        logo_uri: this.logo_uri,
-        is_active: this.is_active
-      })
-      .then(_=> {
-        this.loading = false;
-        this.$toast.success(this.msg);
-        this.dialog = false;
-        setTimeout(() => {
-          location.reload();
-        }, 1500);
-      })
+      if(this.$refs.form1.validate()) {
+        this.loading = true;
+        this.$store.dispatch('user/handleUpdate', {
+          branches_name: this.branches_name,
+          address: this.address,
+          reward_rates: this.reward_rates.toString(),
+          asset_code: this.asset_code,
+          minimum_spend: this.minimum_spend.toString(),
+          approval_code: this.approval_code,
+          logo_uri: this.logo_uri,
+          is_active: this.is_active
+        })
+        .then(_=> {
+          this.loading = false;
+          this.$toast.success(this.msg);
+          this.dialog = false;
+          setTimeout(() => {
+            location.reload();
+          }, 1500);
+        })
+      }
     }
   },
 }
