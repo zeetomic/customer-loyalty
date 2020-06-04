@@ -24,7 +24,7 @@
             <span class="headline">Branch :</span>
             <br>
             <div class="text-center pt-4">
-              <span class="title">Branch : <span style="color: #0077c0">{{branch.length}}</span></span>
+              <span class="title">Total Branches : <span style="color: #0077c0">{{branch.length}}</span></span>
             </div>
           </v-card>
         </v-col>
@@ -68,7 +68,7 @@
               hide-default-footer
               hide-default-header
               fixed-header
-              height="620px"
+              height="635px"
             >
               <template v-slot:header> 
                 <thead>
@@ -80,7 +80,7 @@
                 </thead>
               </template>
               <template v-slot:body v-if="report.length > 0">
-                <tbody v-for="(item, i) in my_report" :key="i">
+                <tbody v-for="(item, i) in report" :key="i">
                   <tr>
                     <td class="d-flex align-center">
                       <span>{{ item.location }}</span>
@@ -142,7 +142,7 @@ export default {
         labels: this.portfolio.map(asset => asset.asset_code !== undefined ? asset.asset_code : asset.asset_type),
         datasets: [
           {
-            backgroundColor: ['#0077c0', '#007fdb', '#004a7c'],
+            backgroundColor: ['#0077c0', '#fc5185', '#004a7c'],
             data: this.portfolio.map(asset => asset.balance)
           }
         ]

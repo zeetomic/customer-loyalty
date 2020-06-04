@@ -49,7 +49,7 @@
             <span class="headline font-weight-bold bg-title">Branch</span>
             <div class="py-2"></div>
             <div class="pa-6">
-              <span class="subtitle ml-2">Branch:</span>
+              <span class="subtitle ml-2">Total Branches:</span>
               <span class="title ml-2" style="color: #0077c0">{{ branch.length }}</span>
             </div>
           </v-card>
@@ -102,7 +102,7 @@ export default {
         labels: this.portfolio.map(asset => asset.asset_code !== undefined ? asset.asset_code : asset.asset_type),
         datasets: [
           {
-            backgroundColor: ['#0077c0', '#007fdb', '#004a7c'],
+            backgroundColor: ['#0077c0', '#fc5185', '#004a7c'],
             data: this.portfolio.map(asset => asset.balance)
           }
         ]
@@ -126,8 +126,9 @@ export default {
   text-align: center;
 }
 .bg-title {
-  background: rgba(199, 238, 255, 0.6)!important;
+  background: #07689f!important;
   padding: 6px 120px;
   border-radius: 6px;
+  color: #fff;
 }
 </style>

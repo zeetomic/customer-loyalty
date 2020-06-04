@@ -59,6 +59,7 @@
                     </template>
                     <v-list>
                       <EditDialog 
+                        :portfolio="portfolio"
                         :branch="handleSearch"
                         :index="index"
                       />

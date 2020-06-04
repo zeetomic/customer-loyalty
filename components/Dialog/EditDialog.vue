@@ -27,11 +27,15 @@
           label="Reward Rates"
           v-model="reward_rates"
         ></v-text-field>
-        <v-text-field
+        <v-select
           outlined
-          label="Asset Code"
+          label="Asset Type"
+          :items="portfolio.map(
+            portfolio => portfolio.asset_code !== undefined ? 
+            portfolio.asset_code : portfolio.asset_type
+          )"
           v-model="asset_code"
-        ></v-text-field>
+        ></v-select>
         <v-text-field
           outlined
           label="Minimun Spend"
@@ -76,6 +80,10 @@ export default {
       required: true
     },
     branch: {
+      type: Array,
+      required: true
+    },
+    portfolio: {
       type: Array,
       required: true
     }
