@@ -4,7 +4,7 @@ export const state = () => ({
   token: '',
   msg: '',
   type: '',
-  user: []
+  user: [],
 })
 
 export const mutations = {
@@ -23,7 +23,25 @@ export const mutations = {
 }
 
 export const actions = {
-// Login
+// User Login
+  async handleUserLogin({commit}, data) {
+    await this.$axios.post('/loginbyemail', {
+      email: data.email,
+      password: data.password
+    })
+    .then(res => {
+      if(res.data.token) {
+        commit('SET_TOKEN', res.data.token);
+        commit('SET_TYPE', 'success');
+        Cookie.set('token', res.data.token);
+      } else if(res.data.error){
+        commit('SET_MSG', res.data.error.message);
+      } else {
+        commit('SET_MSG', res.data.message);
+      }
+    })
+  },
+// Partner Login
   async handleLogin({commit}, data) {
     await this.$axios.post('/partnerlogin', {
       email: data.email,
@@ -84,7 +102,7 @@ export const actions = {
       }
     })
   },
-// GrantAccess
+// Grant Access
   async handleActionGrant({commit}, data) {
     const config = {
       headers: {

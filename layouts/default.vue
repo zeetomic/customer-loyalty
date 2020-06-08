@@ -6,25 +6,22 @@
         <v-container>
           <div v-if="$nuxt.isOffline">You are offline</div>
           <nuxt v-if="$nuxt.isOnline"/>
-          
         </v-container>
       </v-content>
-      <v-footer class="font-weight-medium">
-        <v-col class="text-center" cols="12">
-          {{ new Date().getFullYear() }}
-        </v-col>
-      </v-footer>
+      <Footer />
     </v-app>
   </div>
 </template>
 
 <script>
 import Navbar from '~/components/UI/Navbar.vue';
+import Footer from '~/components/UI/Footer.vue';
 
 export default {
   middleware: ['auth'],
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
 }
 </script>

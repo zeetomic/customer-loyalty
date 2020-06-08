@@ -6,10 +6,10 @@
     <template v-slot:activator="{ on }">
       <v-btn large outlined v-on="on" width="100%" class="primary" dark>Change Password</v-btn>
     </template>
-    <v-sheet>
+    <v-sheet class="pa-4">
       <div class="container">
         <span class="font-weight-medium headline">Change Password</span>
-        <div style="padding: 3% 0"></div>
+        <div class="py-4"></div>
         <v-form
           ref="form"
           lazy-validation

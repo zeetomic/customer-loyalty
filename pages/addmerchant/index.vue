@@ -33,7 +33,11 @@
     </v-col>
     <v-col class="d-flex flex-column align-center justify-center" v-if="portfolio.error">
       <v-card class="pa-12" min-width="500px">
-        <span class="headline red--text">{{portfolio.error.message}}</span>
+        <span class="headline red--text">{{ portfolio.error.message }}</span>
+        <div class="py-2"></div>
+        <v-row class="d-flex justify-center">
+          <v-btn large class="error" width="100%" href="https://beta.zeetomic.com/login" target="blank">Get Wallet</v-btn>
+        </v-row>
       </v-card>
     </v-col>
   </v-row>

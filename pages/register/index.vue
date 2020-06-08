@@ -51,7 +51,7 @@ export default {
   methods: {
     handleLogin() {
       this.loading = true;
-      this.$store.dispatch('user/handleLogin', {
+      this.$store.dispatch('user/handleUserLogin', {
         email: this.email,
         password: this.password
       })
