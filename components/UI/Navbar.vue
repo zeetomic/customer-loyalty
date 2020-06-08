@@ -9,6 +9,15 @@
       <v-btn text dark icon @click="handleNav">
         <v-icon>fas fa-bars</v-icon>
       </v-btn>
+
+      <v-img :src="profile_img" max-width="40px"></v-img>
+      <span 
+        class="white--text title px-2"
+        v-if="user_profile.first_name && user_profile.last_name"
+      >
+        {{user_profile.first_name + user_profile.mid_name + user_profile.last_name}}
+      </span>
+
       <v-spacer></v-spacer>
       <v-btn 
         text 
@@ -70,6 +79,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import Cookie from 'js-cookie';
 
 export default {
   data() {
@@ -84,10 +94,22 @@ export default {
       right: null,
       profile_img: require('~/assets/profile.svg'),
       miniVariant: false,
-      navbar: true
+      navbar: true,
+
+      user_profile: []
     }
   },
+  created() {
+    this.getProfile();
+  },
   methods: {
+    async getProfile() {
+      await this.$axios.setToken(Cookie.get('token'), 'Bearer');
+      this.$axios.get('/userprofile')
+      .then(res => {
+        this.user_profile = res.data;
+      })
+    },
     handleNav() {
       if(screen.width < 1265) {
         this.navbar = !this.navbar;
