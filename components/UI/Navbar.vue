@@ -15,7 +15,7 @@
         class="white--text title px-2"
         v-if="user_profile.first_name && user_profile.last_name"
       >
-        {{user_profile.first_name + user_profile.mid_name + user_profile.last_name}}
+        {{user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name}}
       </span>
 
       <v-spacer></v-spacer>
