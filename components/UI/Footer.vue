@@ -1,5 +1,5 @@
 <template>
-  <v-footer app dark color="#07689f" class="font-weight-medium">
+  <v-footer style="z-index:9" dark color="#07689f" class="font-weight-medium">
     <v-col class="text-center" style="padding: 0">
       <v-row>
         <v-col>
