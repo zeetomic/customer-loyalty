@@ -81,7 +81,7 @@
           <div>
             <AddBranch 
               :portfolio="portfolio"
-              :merchant="merchant.slice(0,1)"
+              :merchant="merchant"
               class="py-2"
             />
           </div>

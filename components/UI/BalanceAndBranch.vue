@@ -1,12 +1,10 @@
 <template>
   <div>
     <v-card
-      v-for="(item, i) in merchant.slice(0,1)" 
-      :key="i"
       class="pa-6 card" 
       flat
     >
-      <p class="font-weight-medium display-1 text-center" style="color: #0077c0">{{item.merchant_name}}</p>
+      <p class="font-weight-medium display-1 text-center" style="color: #0077c0">{{merchant.merchant_name}}</p>
       <v-row>
         <v-col>
           <v-card
@@ -64,7 +62,7 @@ import PieChart from '~/plugins/PieChart.js';
 export default {
   props: {
     merchant: {
-      type: Array,
+      type: Object,
       required: true
     },
     portfolio: {

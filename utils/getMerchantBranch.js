@@ -14,7 +14,7 @@ export const getBoth = async function({req, redirect, $axios}) {
   }
   await $axios.setToken(token, 'Bearer');
   try {
-    let merchant = await $axios.get('/get-all-merchants');
+    let merchant = await $axios.get('/get-merchant');
     let branch = await $axios.get('/branches-created-by');
     let portfolio = await $axios.get('/portforlio');
     return {

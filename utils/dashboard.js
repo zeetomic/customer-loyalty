@@ -16,7 +16,7 @@ export const dashboard = async function({req, redirect, $axios}) {
   try {
     let profile = await $axios.get('/userprofile');
     let report = await $axios.get("/get-transactions-report");
-    let merchant = await $axios.get('/get-all-merchants');
+    let merchant = await $axios.get('/get-merchant');
     let branch = await $axios.get('/branches-created-by');
     let portfolio = await $axios.get('/portforlio');
     return {
