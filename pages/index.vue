@@ -9,7 +9,7 @@
               <v-img :src="profilePic" max-width="80px" class="logo"></v-img>
             </v-row>
             <div class="px-12 pt-4">
-              <span v-if="profile.first_name && profile.last_name">Username: <span class="title">{{profile.first_name + ' ' + profile.mid_name + ' ' + profile.last_name}}</span></span>
+              <span>Username: <span class="title">{{profile.first_name + ' ' + profile.mid_name + ' ' + profile.last_name}}</span></span>
               <br>
               <span>Email: <span class="title">{{profile.email}}</span></span>
               <br>

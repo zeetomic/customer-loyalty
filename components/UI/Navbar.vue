@@ -11,14 +11,14 @@
       </v-btn>
 
       <v-img :src="profile_img" max-width="40px"></v-img>
-      <span 
-        class="white--text title px-2"
-        v-if="user_profile.first_name && user_profile.last_name"
-      >
+
+      <span class="pl-2 white--text" v-if="fetching">Fetching...</span>
+      <span class="white--text title px-2" v-if="!fetching">
         {{user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name}}
       </span>
 
       <v-spacer></v-spacer>
+
       <v-btn 
         text 
         dark
@@ -48,9 +48,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item v-if="miniVariant" class="py-1">
-        
-      </v-list-item>
+      <v-list-item v-if="miniVariant" class="py-1"></v-list-item>
 
       <v-divider></v-divider>
 
@@ -78,7 +76,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import Cookie from 'js-cookie';
 
 export default {
@@ -87,7 +84,6 @@ export default {
       items: [
         { title: 'Dashboard', icon: 'fas fa-plus-square', path: '/' },
         { title: 'Merchant Management', icon: 'fas fa-building', path: '/company'  },
-        // { title: 'Branch', icon: 'fas fa-store', path: '/branch'  },
         { title: 'Report', icon: 'fas fa-scroll', path: '/report'  },
         { title: 'Setting', icon: 'fas fa-cogs', path: '/setting'  },
       ],
@@ -96,18 +92,20 @@ export default {
       miniVariant: false,
       navbar: true,
 
-      user_profile: []
+      user_profile: [],
+      fetching: true
     }
   },
-  created() {
+  mounted() {
     this.getProfile();
   },
   methods: {
     async getProfile() {
       await this.$axios.setToken(Cookie.get('token'), 'Bearer');
-      this.$axios.get('/userprofile')
+      await this.$axios.get('/userprofile')
       .then(res => {
         this.user_profile = res.data;
+        this.fetching = false;
       })
     },
     handleNav() {
