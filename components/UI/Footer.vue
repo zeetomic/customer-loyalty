@@ -12,7 +12,7 @@
           <v-btn text href="https://www.zeetomic.com/termofuse" target="blank"><span class="text-capitalize">Term of use</span></v-btn>
         </v-col>
         <v-col style="padding: 0; padding-top: .4rem ">
-          <span class="text-center">Copyright © 2018 Zeetomic</span>
+          <span class="text-center">Copyright © 2020 Zeetomic</span>
         </v-col>
       </v-row>
     </v-col>
