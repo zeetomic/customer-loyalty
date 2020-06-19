@@ -8,12 +8,11 @@
         <v-row class="d-flex justify-center">
           <v-img :src="profile" max-width="80px" class="logo"></v-img>
         </v-row>
-        <div class="pa-4">
-          <span class="headline"><span class="title">User Name:</span> {{user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name}}</span>
+        <div class="pa-4 text-center">
+          <span class="headline">{{user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name}}</span>
           <br>
-          <span class="headline"><span class="title">Email:</span> {{user_profile.email}}</span>
+          <span class="headline">{{user_profile.email}}</span>
           <br>
-          <span class="headline"><span class="title">Gender:</span> {{user_profile.gender}}</span>
         </div>
         <div>
           <ChangePass />

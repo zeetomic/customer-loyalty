@@ -7,8 +7,9 @@
           <div v-if="$nuxt.isOffline">You are offline</div>
           <nuxt v-if="$nuxt.isOnline"/>
         </v-container>
+        <div class="py-6"></div>
+        <Footer/>
       </v-content>
-      <Footer />
     </v-app>
   </div>
 </template>
