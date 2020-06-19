@@ -15,7 +15,7 @@
           lazy-validation
         >
           <v-text-field
-            label="Old Password"
+            label="Current Password"
             outlined
             type="password"
             v-model="current_password"
