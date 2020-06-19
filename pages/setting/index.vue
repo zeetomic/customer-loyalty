@@ -1,38 +1,26 @@
 <template>
-  <div>
-    <v-row class="d-flex justify-center">
-      <v-col cols="6">
-        <v-card 
-          class="pa-4" 
-          flat
-        >
-          <v-row class="d-flex justify-center">
-            <v-img :src="profile" max-width="80px" class="logo"></v-img>
-          </v-row>
-          <div class="pa-4">
-            <span class="headline"><span class="title">User Name:</span> {{user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name}}</span>
-            <br>
-            <span class="headline"><span class="title">Email:</span> {{user_profile.email}}</span>
-            <br>
-            <span class="headline"><span class="title">Gender:</span> {{user_profile.gender}}</span>
-          </div>
-          <div>
-            <ChangePass />
-          </div>
-        </v-card>
-      </v-col>
-      <!-- <v-col cols="3">
-        <v-card class="pa-4">
-          <span>Balance</span>
-        </v-card>
-      </v-col>
-      <v-col cols="3">
-        <v-card class="pa-4">
-          <span>Branch</span>
-        </v-card>
-      </v-col> -->
-    </v-row>
-  </div>
+  <v-row class="d-flex justify-center">
+    <v-col cols="6">
+      <v-card 
+        class="pa-4" 
+        flat
+      >
+        <v-row class="d-flex justify-center">
+          <v-img :src="profile" max-width="80px" class="logo"></v-img>
+        </v-row>
+        <div class="pa-4">
+          <span class="headline"><span class="title">User Name:</span> {{user_profile.first_name + ' ' + user_profile.mid_name + ' ' + user_profile.last_name}}</span>
+          <br>
+          <span class="headline"><span class="title">Email:</span> {{user_profile.email}}</span>
+          <br>
+          <span class="headline"><span class="title">Gender:</span> {{user_profile.gender}}</span>
+        </div>
+        <div>
+          <ChangePass />
+        </div>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

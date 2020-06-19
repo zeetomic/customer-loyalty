@@ -135,7 +135,6 @@ export default {
     margin: 1rem;
   }
   .branch:hover {
-    /* background: rgba(0, 0, 0, 0.1)!important; */
     background: rgba(199, 238, 255, 0.6)!important;
   }
   .logo {

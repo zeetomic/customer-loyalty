@@ -11,8 +11,8 @@
         <v-col style="padding: 0">
           <v-btn text href="https://www.zeetomic.com/termofuse" target="blank"><span class="text-capitalize">Term of use</span></v-btn>
         </v-col>
-        <v-col style="padding: 0; padding-top: .4rem ">
-          <span class="text-center">Copyright © 2020 Zeetomic</span>
+        <v-col style="padding: 0; padding-top: .4rem">
+          <span>Copyright © 2020 Zeetomic</span>
         </v-col>
       </v-row>
     </v-col>
