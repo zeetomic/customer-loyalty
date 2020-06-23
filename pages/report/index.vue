@@ -138,6 +138,7 @@ import Cookie from 'js-cookie';
 
 export default {
   layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
+  middleware: ['auth'],
   asyncData: report,
   computed: {
     my_report() {

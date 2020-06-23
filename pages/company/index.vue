@@ -101,6 +101,7 @@ import { getBoth } from '~/utils/getMerchantBranch.js';
 
 export default {
   layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
+  middleware: ['auth'],
   components: {
     AddBranch,
     BalanceAndBranch,

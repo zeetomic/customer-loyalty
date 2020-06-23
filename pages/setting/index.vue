@@ -28,6 +28,7 @@ import ChangePass from '~/components/Dialog/ChangePass.vue';
 
 export default {
   layout: ({ isMobile }) => isMobile ? 'mobile' : 'default',
+  middleware: ['auth'],
   components: {
     ChangePass
   },
