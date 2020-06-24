@@ -75,7 +75,8 @@ export default {
     },
     theme: {
       dark: false,
-    }
+    },
+    treeShake: true,
   },
   /*
   ** Build configuration

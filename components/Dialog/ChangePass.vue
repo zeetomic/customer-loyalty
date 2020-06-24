@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="dialogChangePassword"
-    width="90%"
+    width="50%"
   >
     <template v-slot:activator="{ on }">
       <v-btn large outlined v-on="on" width="100%" class="primary" dark>Change Password</v-btn>
